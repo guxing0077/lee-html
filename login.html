@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+backg02.jpg<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>登录页面</title>
+    <!-- 引入公共的css -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/login.css" rel="stylesheet">
+</head>
+<body class="signin">
+<div class="signinpanel">
+    <div class="row content">
+        <div class="col-sm-7">
+            <div class="signin-info">
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <form id="loginForm">
+                <h3 class="text-center">用户登录</h3>
+                <input type="text" v-model.trim="username" class="form-control uname"/>
+                <input type="password" v-model="password" class="form-control pword m-b" />
+                <span class="text-danger" v-show="message!=''" v-text="message"></span>
+                <a @click="login" class="btn btn-login btn-block">登录</a>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer footer-bottom">
+        <div class="pull-left">&copy; 2018 All Rights Reserved. Lee</div>
+    </div>
+</div>
+<script src="js/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/vue-resource.js"></script>
+<script>
+	new Vue({
+		el: '#loginForm',
+		data: {
+			username: 'lee',
+			password: '123456',
+			message: '用户名或密码错误'
+		},
+		methods: {
+			login: function(){
+				this.$http.get('data/login.json', {
+
+				}).then(function(res){
+					console.log(res)
+				})
+				// location.href = 'index.html';
+			}
+		}
+	});
+</script>
+</body>
+</html>
